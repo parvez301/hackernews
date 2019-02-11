@@ -25,7 +25,7 @@ SECRET_KEY = 'ki+g_sv2bt7e^j(019eh(kg2@)nwtu#-0a@x6f7b1j8auf_j22'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
