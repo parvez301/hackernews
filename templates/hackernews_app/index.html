@@ -1,0 +1,55 @@
+{% extends "hackernews_app/base.html" %}
+{% block body_block %}
+<div class="container">
+  <div>
+    <h1>Welcome to the HackerNews !</h1>
+    {% if user.is_authenticated %}
+        <h2>Hello {{ user.username }}</h2>
+        {% if articles %}
+        <div class="table-responsive"></div>
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Upvotes</th>
+                    <th>Comments</th>
+                    <th>HackerNews</th>
+                    <th>Posted On</th>
+                    <th>Mark As Read</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    {% if article %}
+                        <tr>
+                        <td><a href="{{article.url}}" target="blank">{{article.title}}</a></td>
+                        <td>{{article.upvotes}}</td>
+                        <td>{{article.comments}}</td>
+                        <td><a href="{{article.hackernews_url}}" target="blank"><img src="http://logo.clearbit.com/ycombinator.com" width="20px" height="20px"/></a></td>
+                        <td>{{article.posted_on|date:'d-m-Y H:i'}}</td>
+                        <td>
+                            <a href="/news/mark_as_read/{{article.id}}/">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/news/delete/{{article.id}}/">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p>Currently You haven't read any article</p>
+        {% endif %}
+    {% else %}
+        <h2>Register or Login if you'd like to</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
