@@ -8,8 +8,7 @@ from hackernews_app.models import Article
 
 def fetch_articles():
     # Just for development process
-    # TODO: Remove this line after development
-    Article.objects.all().delete()
+    # Article.objects.all().delete()
 
     articles = []
     for page_num in range(1, 4):
